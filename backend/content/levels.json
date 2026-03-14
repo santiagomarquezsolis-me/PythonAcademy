@@ -1,0 +1,32 @@
+{
+  "levels": [
+    {
+      "id": "level_01_variables",
+      "title": "Misión 1: Escudo Terrestre Caído",
+      "description": "¡Las alarmas suenan! Los extraterrestres han drenado la energía del búnker principal. Debes iniciar los protocolos de emergencia inicializando la variable 'energia' con el valor numérico 100 para activar el montacargas hacia tu nave interceptora.",
+      "initial_code": "energia = 0\n\n# Tu código aquí\n",
+      "hint": "En Python, las variables se declaran escribiendo su nombre, un signo igual (=) y su valor. Borra el 0 y asigna el número 100 a energia. (Ejemplo: mi_numero = 50)"
+    },
+    {
+      "id": "level_02_bucles",
+      "title": "Misión 2: Carga de Municiones",
+      "description": "Tu nave de asalto terrestre está casi lista para despegar, pero los láseres están vacíos. Crea un bucle 'for' que añada exactamente 5 cargas de plasma (pueden ser números o strings) a la lista 'combustible' de la armería.",
+      "initial_code": "combustible = []\n\n# Escribe un bucle for aquí:\n",
+      "hint": "Puedes usar la función 'range(5)' dentro de un bucle 'for' para repetir una acción 5 veces. Dentro del bucle, usa 'combustible.append(\"plasma\")' para añadir un elemento a la lista."
+    },
+    {
+      "id": "level_03_funciones",
+      "title": "Misión 3: El Código Alienígena",
+      "description": "¡Has conseguido acoplarte a la Nave Nodriza enemiga! Para abrir la escotilla exterior, debes enviar un pulso electromagnético específico. Define una función 'verificar_acceso'(codigo) que devuelva True si el código es 999 (la frecuencia de resonancia alienígena), y False si no lo es.",
+      "initial_code": "# Define tu función 'verificar_acceso'(codigo) aquí:\n",
+      "hint": "Usa 'def verificar_acceso(codigo):'. Dentro de la función, haz un 'if codigo == 999:' que retorne True (¡con mayúscula inicial!), y un 'else' que retorne False."
+    },
+    {
+      "id": "level_04_listas",
+      "title": "Misión 4: Liberación de Andrómeda",
+      "description": "¡Estás frente al ordenador central! El sistema alienígena retiene el paquete en una lista desordenada. Para completar la carga del Virus Andrómeda e infectar la nave, ordena la variable lista 'pasajeros' in situ para que el payload ejecutable quede en la cima de la pila en orden alfabético.",
+      "initial_code": "pasajeros = ['Zark', 'Alice', 'Bob']\n\n# Ordena esta lista para liberar Andrómeda:\n",
+      "hint": "Los objetos de tipo lista en Python tienen un método integrado '.sort()' que ordena sus elementos orden alfabéticamente o de menor a mayor en el mismo lugar de la memoria. Solo tienes que escribir pasajeros.sort()"
+    }
+  ]
+}

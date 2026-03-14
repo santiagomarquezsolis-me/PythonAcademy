@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "question": "¿Cómo se define una función en Python?",
+    "options": ["function myFunc()", "def my_func():", "create myFunc()", "fun my_func():"],
+    "correct_index": 1,
+    "explanation": "En Python las funciones se definen utilizando la palabra reservada 'def' seguida del nombre de la función y dos puntos."
+  },
+  {
+    "id": 2,
+    "question": "¿Cuál es el tipo de dato de [1, 2, 3] en Python?",
+    "options": ["tuple", "dict", "set", "list"],
+    "correct_index": 3,
+    "explanation": "Los corchetes [] se utilizan en Python para definir listas modificables."
+  },
+  {
+    "id": 3,
+    "question": "¿Qué palabra reservada se usa para manejar excepciones?",
+    "options": ["try/catch", "try/except", "do/catch", "try/finally"],
+    "correct_index": 1,
+    "explanation": "En Python, se utiliza el bloque 'try' seguido de 'except' para capturar y manejar posibles errores (excepciones)."
+  },
+  {
+    "id": 4,
+    "question": "¿Qué método se usa para añadir un elemento al final de una lista?",
+    "options": [".push()", ".add()", ".append()", ".insert()"],
+    "correct_index": 2,
+    "explanation": "El método .append() modifica la lista in situ, añadiendo el elemento indicado justo al final."
+  },
+  {
+    "id": 5,
+    "question": "¿Cómo se puede iniciar un bucle que corra 10 veces?",
+    "options": ["for i in range(10):", "for i=0 to 10:", "loop 10 times:", "for(i=0; i<10; i++)"],
+    "correct_index": 0,
+    "explanation": "La función in-built range(10) genera una secuencia de 0 a 9, y es la forma estándar de iterar N veces."
+  }
+]
