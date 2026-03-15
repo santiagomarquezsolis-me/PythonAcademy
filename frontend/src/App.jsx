@@ -6,6 +6,7 @@ import NonoScreen from './components/NonoScreen';
 import NonoSuccessModal from './components/NonoSuccessModal';
 import HeroScreen from './components/HeroScreen';
 import CinematicIntro from './components/CinematicIntro';
+import LandingPage from './components/LandingPage';
 import { evaluateCode } from './api';
 import axios from 'axios';
 import './index.css';
@@ -16,7 +17,7 @@ function App() {
   const [result, setResult] = useState(null);
   const [nonoSuccessLevel, setNonoSuccessLevel] = useState(null);
   const [levelsData, setLevelsData] = useState([]);
-  const [gamePhase, setGamePhase] = useState('CINEMATIC'); // CINEMATIC, START, HERO, NONO, PLAYING
+  const [gamePhase, setGamePhase] = useState('LANDING'); // LANDING, CINEMATIC, START, HERO, NONO, PLAYING
   const [completedLevels, setCompletedLevels] = useState([]);
 
   useEffect(() => {
@@ -49,6 +50,10 @@ function App() {
       }
     }
   };
+
+  if (gamePhase === 'LANDING') {
+    return <LandingPage onStart={() => setGamePhase('CINEMATIC')} />;
+  }
 
   if (gamePhase === 'CINEMATIC') {
     return <CinematicIntro onNext={() => setGamePhase('START')} />;
