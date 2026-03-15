@@ -7,6 +7,7 @@ const MapEngine = ({ onInteract, levelsData, onExit, completedLevels = [] }) => 
   const [lives, setLives] = useState(3);
   const [showBattleship, setShowBattleship] = useState(false);
   const [showAbortConfirm, setShowAbortConfirm] = useState(false);
+  const [showGameOverModal, setShowGameOverModal] = useState(false);
   const [gridData, setGridData] = useState([]); // Arreglo de objetos en vez de ints simples
   const [messages, setMessages] = useState([
     ">> ENLACE ESTABLECIDO...",
@@ -149,10 +150,7 @@ const MapEngine = ({ onInteract, levelsData, onExit, completedLevels = [] }) => 
   // Vigilancia de Game Over
   useEffect(() => {
     if (lives <= 0) {
-       setTimeout(() => {
-          alert("💥 SISTEMA CRITICAMENTE DAÑADO. Misión Abortada. Volviendo a la Base.");
-          onExit();
-       }, 500);
+       setTimeout(() => setShowGameOverModal(true), 500);
     }
   }, [lives]);
 
@@ -216,7 +214,7 @@ const MapEngine = ({ onInteract, levelsData, onExit, completedLevels = [] }) => 
               ))}
             </div>
             <p style={{marginTop: '20px', color: '#6272a4', fontSize: '14px'}}>
-              <strong>Controles:</strong> Usa ⬆️⬇️⬅️➡️ para mover a tu soldado Spartan (🪖). <br/>
+              <strong>Controles:</strong> Usa ⬆️⬇️⬅️➡️ para mover a tu soldado Spartan. <br/>
               Infiltráte y reprograma las Consolas Enemigas (👽) usando Python.
             </p>
           </div>
@@ -263,7 +261,7 @@ const MapEngine = ({ onInteract, levelsData, onExit, completedLevels = [] }) => 
                 let isDeadAlien = false;
                 
                 if (isPlayer) {
-                  cellContent = '🪖';
+                  cellContent = ''; // Se renderiza el icono Spartan (img) aparte
                 } else if (targetCell.hasMine && isRevealed) {
                   cellContent = '💥'; // La mina explota si es revelada (y se pisa) visualmente
                 } else if (targetCell.type > 1) {
@@ -301,7 +299,13 @@ const MapEngine = ({ onInteract, levelsData, onExit, completedLevels = [] }) => 
                     {!isPlayer && targetCell.type > 1 && isRevealed && <span style={{position:'absolute', top: 2, right: 4, fontSize: '12px', color: isDeadAlien ? '#50fa7b' : '#ff5555', fontWeight: 'bold', zIndex: 10}}>Z{targetCell.type-1}</span>}
                     
                     {/* Personaje o Prop o Mina */}
-                    {cellContent && isRevealed && <span style={{zIndex: 10, animation: isPlayer ? 'float 2s ease-in-out infinite' : ((targetCell.type > 1 && !isDeadAlien) ? 'pulse 2s infinite' : 'none')}}>{cellContent}</span>}
+                    {isRevealed && (
+                      isPlayer ? (
+                        <img src="/spartan.png" alt="Spartan" style={{ width: '48px', height: '48px', objectFit: 'contain', zIndex: 10, animation: 'float 2s ease-in-out infinite' }} />
+                      ) : cellContent ? (
+                        <span style={{zIndex: 10, animation: (targetCell.type > 1 && !isDeadAlien) ? 'pulse 2s infinite' : 'none'}}>{cellContent}</span>
+                      ) : null
+                    )}
                   </div>
                 );
               })
@@ -338,6 +342,27 @@ const MapEngine = ({ onInteract, levelsData, onExit, completedLevels = [] }) => 
                 style={{...styles.abortBtn, backgroundColor: '#44475a', color: '#fff'}}
               >CANCELAR</button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {showGameOverModal && (
+        <div style={styles.abortOverlay}>
+          <div style={styles.gameOverModal}>
+            <div style={styles.gameOverIcon}>💥</div>
+            <h2 style={{color: '#ff5555', marginTop: 0, marginBottom: '12px'}}>SISTEMA CRITICAMENTE DAÑADO</h2>
+            <p style={{color: '#f8f8f2', fontSize: '16px', marginBottom: '24px', lineHeight: 1.5}}>
+              Misión Abortada.<br/>Volviendo a la Base.
+            </p>
+            <button
+              onClick={() => {
+                setShowGameOverModal(false);
+                onExit();
+              }}
+              style={{...styles.abortBtn, backgroundColor: '#ff5555', color: '#111', padding: '12px 28px', fontSize: '16px'}}
+            >
+              VOLVER A LA BASE
+            </button>
           </div>
         </div>
       )}
@@ -419,6 +444,14 @@ const styles = {
     backgroundColor: '#1E1E2E', border: '2px solid #ff5555',
     borderRadius: '8px', padding: '30px', maxWidth: '400px',
     textAlign: 'center', boxShadow: '0 0 20px rgba(255,85,85,0.4)',
+  },
+  gameOverModal: {
+    backgroundColor: '#1E1E2E', border: '2px solid #ff5555',
+    borderRadius: '12px', padding: '36px', maxWidth: '420px',
+    textAlign: 'center', boxShadow: '0 0 24px rgba(255,85,85,0.5)',
+  },
+  gameOverIcon: {
+    fontSize: '56px', marginBottom: '8px', lineHeight: 1,
   },
   abortBtn: {
     padding: '10px 20px', border: 'none', borderRadius: '4px', cursor: 'pointer',

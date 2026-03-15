@@ -3,6 +3,7 @@ import MapEngine from './game/MapEngine';
 import CodeModal from './components/CodeModal';
 import StartScreen from './components/StartScreen';
 import NonoScreen from './components/NonoScreen';
+import NonoSuccessModal from './components/NonoSuccessModal';
 import HeroScreen from './components/HeroScreen';
 import CinematicIntro from './components/CinematicIntro';
 import { evaluateCode } from './api';
@@ -13,7 +14,7 @@ function App() {
   const [activeLevel, setActiveLevel] = useState(null);
   const [evaluating, setEvaluating] = useState(false);
   const [result, setResult] = useState(null);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [nonoSuccessLevel, setNonoSuccessLevel] = useState(null);
   const [levelsData, setLevelsData] = useState([]);
   const [gamePhase, setGamePhase] = useState('CINEMATIC'); // CINEMATIC, START, HERO, NONO, PLAYING
   const [completedLevels, setCompletedLevels] = useState([]);
@@ -47,11 +48,6 @@ function App() {
         setCompletedLevels([...completedLevels, levelId]);
       }
     }
-  };
-
-  const closeSuccessModal = () => {
-    setShowSuccessModal(false);
-    setResult(null); // Limpiar cuadro negro con stacktrace al cerrar modal
   };
 
   if (gamePhase === 'CINEMATIC') {
@@ -88,7 +84,7 @@ function App() {
         />
       )}
 
-      {result && !showSuccessModal && (
+      {result && !nonoSuccessLevel && (
         <div style={{
           position: 'fixed', bottom: 20, right: 20, 
           backgroundColor: result.success ? '#1a401a' : '#401a1a', 
@@ -109,10 +105,10 @@ function App() {
             {result.output}
           </pre>
           
-          {result.success && (
+          {result.success && activeLevel && (
             <button 
               onClick={() => {
-                setShowSuccessModal(true);
+                setNonoSuccessLevel(activeLevel);
                 setActiveLevel(null);
                 setResult(null);
               }}
@@ -124,43 +120,15 @@ function App() {
         </div>
       )}
 
-      {showSuccessModal && (
-        <div style={styles.successOverlay}>
-          <div style={styles.successModal}>
-            <div style={styles.successIcon}>👽🔫</div>
-            <h2 style={{color: '#4ade80', margin: '0 0 10px 0'}}>¡Acceso Concedido!</h2>
-            <p style={{color: '#cad5e2', marginBottom: '20px'}}>Has inyectado el código exitosamente en la red alienígena. El terminal ya es nuestro.</p>
-            <button style={styles.continueBtn} onClick={closeSuccessModal}>
-              Continuar Infiltración
-            </button>
-          </div>
-        </div>
+      {nonoSuccessLevel && (
+        <NonoSuccessModal
+          levelTitle={nonoSuccessLevel.title}
+          successExplanation={nonoSuccessLevel.success_explanation}
+          onContinue={() => setNonoSuccessLevel(null)}
+        />
       )}
     </div>
   );
 }
-
-const styles = {
-  successOverlay: {
-    position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-    backgroundColor: 'rgba(0,10,0,0.85)', display: 'flex',
-    justifyContent: 'center', alignItems: 'center', zIndex: 3000,
-    backdropFilter: 'blur(5px)'
-  },
-  successModal: {
-    backgroundColor: '#111827', border: '1px solid #22c55e',
-    borderRadius: '12px', padding: '40px', display: 'flex', 
-    flexDirection: 'column', alignItems: 'center', textAlign: 'center',
-    maxWidth: '400px', boxShadow: '0 0 20px rgba(34, 197, 94, 0.3)'
-  },
-  successIcon: {
-    fontSize: '60px', marginBottom: '15px'
-  },
-  continueBtn: {
-    padding: '12px 24px', backgroundColor: '#22c55e', color: 'white',
-    border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '16px',
-    fontWeight: 'bold', transition: 'all 0.2s', width: '100%'
-  }
-};
 
 export default App;

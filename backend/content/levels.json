@@ -5,28 +5,32 @@
       "title": "Misión 1: Escudo Terrestre Caído",
       "description": "¡Las alarmas suenan! Los extraterrestres han drenado la energía del búnker principal. Debes iniciar los protocolos de emergencia inicializando la variable 'energia' con el valor numérico 100 para activar el montacargas hacia tu nave interceptora.",
       "initial_code": "energia = 0\n\n# Tu código aquí\n",
-      "hint": "En Python, las variables se declaran escribiendo su nombre, un signo igual (=) y su valor. Borra el 0 y asigna el número 100 a energia. (Ejemplo: mi_numero = 50)"
+      "hint": "En Python, las variables se declaran escribiendo su nombre, un signo igual (=) y su valor. Borra el 0 y asigna el número 100 a energia. (Ejemplo: mi_numero = 50)",
+      "success_explanation": "¡Correcto! Asignaste el valor 100 a la variable 'energia'. En Python, una variable guarda un dato en memoria; al escribir energia = 100 activaste el protocolo porque el sistema comprueba exactamente ese valor para liberar el montacargas. Sin esa asignación, la variable seguiría en 0 y la misión fallaría."
     },
     {
       "id": "level_02_bucles",
       "title": "Misión 2: Carga de Municiones",
       "description": "Tu nave de asalto terrestre está casi lista para despegar, pero los láseres están vacíos. Crea un bucle 'for' que añada exactamente 5 cargas de plasma (pueden ser números o strings) a la lista 'combustible' de la armería.",
       "initial_code": "combustible = []\n\n# Escribe un bucle for aquí:\n",
-      "hint": "Puedes usar la función 'range(5)' dentro de un bucle 'for' para repetir una acción 5 veces. Dentro del bucle, usa 'combustible.append(\"plasma\")' para añadir un elemento a la lista."
+      "hint": "Puedes usar la función 'range(5)' dentro de un bucle 'for' para repetir una acción 5 veces. Dentro del bucle, usa 'combustible.append(\"plasma\")' para añadir un elemento a la lista.",
+      "success_explanation": "¡Bien hecho! Usaste un bucle 'for' para repetir la operación exactamente 5 veces y llenar la lista 'combustible'. Los bucles evitan escribir el mismo código una y otra vez; range(5) da los números del 0 al 4 y en cada vuelta añadiste un elemento con append(). Así la armería queda cargada y la nave puede despegar."
     },
     {
       "id": "level_03_funciones",
       "title": "Misión 3: El Código Alienígena",
       "description": "¡Has conseguido acoplarte a la Nave Nodriza enemiga! Para abrir la escotilla exterior, debes enviar un pulso electromagnético específico. Define una función 'verificar_acceso'(codigo) que devuelva True si el código es 999 (la frecuencia de resonancia alienígena), y False si no lo es.",
       "initial_code": "# Define tu función 'verificar_acceso'(codigo) aquí:\n",
-      "hint": "Usa 'def verificar_acceso(codigo):'. Dentro de la función, haz un 'if codigo == 999:' que retorne True (¡con mayúscula inicial!), y un 'else' que retorne False."
+      "hint": "Usa 'def verificar_acceso(codigo):'. Dentro de la función, haz un 'if codigo == 999:' que retorne True (¡con mayúscula inicial!), y un 'else' que retorne False.",
+      "success_explanation": "¡Perfecto! Definiste la función 'verificar_acceso(codigo)' que devuelve True cuando el código es 999 y False en caso contrario. Las funciones encapsulan lógica reutilizable; aquí el sistema alienígena comprueba la frecuencia de resonancia llamando a tu función. Al devolver el booleano correcto, la escotilla se desbloquea."
     },
     {
       "id": "level_04_listas",
       "title": "Misión 4: Liberación de Andrómeda",
       "description": "¡Estás frente al ordenador central! El sistema alienígena retiene el paquete en una lista desordenada. Para completar la carga del Virus Andrómeda e infectar la nave, ordena la variable lista 'pasajeros' in situ para que el payload ejecutable quede en la cima de la pila en orden alfabético.",
       "initial_code": "pasajeros = ['Zark', 'Alice', 'Bob']\n\n# Ordena esta lista para liberar Andrómeda:\n",
-      "hint": "Los objetos de tipo lista en Python tienen un método integrado '.sort()' que ordena sus elementos orden alfabéticamente o de menor a mayor en el mismo lugar de la memoria. Solo tienes que escribir pasajeros.sort()"
+      "hint": "Los objetos de tipo lista en Python tienen un método integrado '.sort()' que ordena sus elementos orden alfabéticamente o de menor a mayor en el mismo lugar de la memoria. Solo tienes que escribir pasajeros.sort()",
+      "success_explanation": "¡Excelente! Usaste el método .sort() sobre la lista 'pasajeros', que ordena los elementos in situ (en el mismo sitio en memoria) por orden alfabético. Así 'Alice', 'Bob' y 'Zark' quedan en el orden que el ordenador central espera para liberar el Virus Andrómeda. Sin ordenar la lista, el payload no se ejecutaría correctamente."
     }
   ]
 }

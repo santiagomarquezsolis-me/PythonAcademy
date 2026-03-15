@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- Fondo transparente por defecto -->
+  <!-- Cabeza/casco: gris oscuro con visor azul -->
+  <path fill="#3d3d4d" d="M24 4c-6 0-10 5-10 11 0 2 1 4 2 5l-2 4h20l-2-4c1-1 2-3 2-5 0-6-4-11-10-11z"/>
+  <path fill="#6272a4" d="M20 14h8v4h-8z"/>
+  <ellipse cx="24" cy="16" rx="3" ry="1.5" fill="#8be9fd"/>
+  <!-- Detalle rojo/naranja en casco -->
+  <circle cx="18" cy="12" r="1" fill="#ff5555"/>
+  <circle cx="30" cy="12" r="1" fill="#ff5555"/>
+  <!-- Hombros/cuerpo -->
+  <path fill="#4a4a5a" d="M14 20v6l-4 14h6l2-8h12l2 8h6l-4-14v-6H14z"/>
+  <path fill="#5a5a6a" d="M18 20h12v4H18z"/>
+  <!-- Pecho con acento -->
+  <rect x="21" y="22" width="6" height="4" rx="1" fill="#44475a"/>
+  <rect x="23" y="23" width="2" height="2" fill="#ff5555"/>
+</svg>
