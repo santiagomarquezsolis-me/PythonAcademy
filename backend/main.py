@@ -19,7 +19,7 @@ app = FastAPI(title="Python Academy RPG", description="Backend MVP para evaluaci
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -63,5 +63,12 @@ def evaluate_code(req: EvaluationRequest):
     return {
         "success": result["success"],
         "output": result["output"],
-        # A futuro: actualizar progreso en BD si la respuesta es exitosa
     }
+
+# Servir el Frontend (debe ir al final para no interferir con las rutas de API)
+frontend_path = "../frontend/dist"
+if os.path.exists(frontend_path):
+    app.mount("/", StaticFiles(directory=frontend_path, html=True), name="frontend")
+else:
+    print(f"Warning: Frontend build directory not found at {frontend_path}")
+
